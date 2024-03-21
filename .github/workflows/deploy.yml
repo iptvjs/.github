@@ -63,16 +63,13 @@ jobs:
         # 节目源
         rm -f EPG.xml && wget https://epg.112114.xyz/pp.xml -O EPG.xml
         echo "Auto Update IPTV in ${{ steps.date.outputs.date }}" > README.md
-
+        
     - name: Clean
       run: |
-        git config --local user.email "week9@users.noreply.github.com"
-        git config --local user.name "week9"
-        git checkout --orphan latest_branch
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
         git add -A
         git commit -am "${{ steps.date.outputs.date }}"
-        git branch -D main
-        git branch -m main
 
     - name: Push
-      run: git push -f origin main
+      run: git push -f origin main   
